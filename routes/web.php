@@ -6,6 +6,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Middleware\Autenticador;
 use App\Http\Middleware\ControleAcesso;
 use App\Http\Controllers\SocialiteController;
+use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\AccessLogsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +26,10 @@ Route::get('/', function () {
 Route::get('/home', [HomeController::class, 'index'])->name('home.index')->middleware(Autenticador::class);
 //usuarios
 Route::resource('/usuario', UsuarioController::class)->middleware(Autenticador::class)->middleware(ControleAcesso::class);
+//perfis de usuarios
+Route::resource('perfis_usuarios', PerfilController::class)->middleware(Autenticador::class)->middleware(ControleAcesso::class);
+//logs access
+Route::resource('access_logs', AccessLogsController::class)->middleware(Autenticador::class)->middleware(ControleAcesso::class);
 
 //login google
 //Route::get('login/google', "SocialiteController@redirectToProvider");

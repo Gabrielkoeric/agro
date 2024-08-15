@@ -24,7 +24,7 @@ return new class extends Migration
         });
 
         $dadosPadraoHome = [
-            [
+           /* [
                 'nome' => 'Servidores Fisicos',
                 'nome_tela' => 'server',
                 'imagem_tela' => 'storage/home/servidor.png',
@@ -81,6 +81,15 @@ return new class extends Migration
                 'updated_at' => null,
             ],
             [
+                'nome' => 'Scripts',
+                'nome_tela' => 'script',
+                'imagem_tela' => 'storage/home/terraform.png',
+                'permite_home' => 1,
+                'created_at' => null,
+                'updated_at' => null,
+            ],*/
+            [
+                'id_home' => 98,
                 'nome' => 'Usuarios',
                 'nome_tela' => 'usuario',
                 'imagem_tela' => 'storage/home/usuarios.png',
@@ -89,6 +98,7 @@ return new class extends Migration
                 'updated_at' => null,
             ],
             [
+                'id_home' => 99,
                 'nome' => 'Perfis de Usuarios',
                 'nome_tela' => 'perfis_usuarios',
                 'imagem_tela' => 'storage/home/perfis_usuarios.png',
@@ -97,17 +107,10 @@ return new class extends Migration
                 'updated_at' => null,
             ],
             [
+                'id_home' => 100,
                 'nome' => 'Logs de Acesso',
                 'nome_tela' => 'access_logs',
                 'imagem_tela' => 'storage/home/log_access.png',
-                'permite_home' => 1,
-                'created_at' => null,
-                'updated_at' => null,
-            ],
-            [
-                'nome' => 'Scripts',
-                'nome_tela' => 'script',
-                'imagem_tela' => 'storage/home/terraform.png',
                 'permite_home' => 1,
                 'created_at' => null,
                 'updated_at' => null,
