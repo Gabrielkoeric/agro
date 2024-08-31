@@ -3,18 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class SafraController extends Controller
+class ProdutosController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        $safras = DB::table('safra')->get();
-
-        return view('safra.index')->with('safras', $safras);
+        //
     }
 
     /**
@@ -22,7 +19,7 @@ class SafraController extends Controller
      */
     public function create()
     {
-        return view('safra.create');
+        //
     }
 
     /**
@@ -30,15 +27,7 @@ class SafraController extends Controller
      */
     public function store(Request $request)
     {
-        $safra_nome = $request->input('nome');
-
-        $dados = [
-            'safra_nome' => $safra_nome,
-        ];
-
-        DB::table('safra')->insertGetId($dados);
-
-        return redirect('/safra')->with('mensagem.sucesso', 'Usuario inserido com sucesso!');
+        //
     }
 
     /**
@@ -52,9 +41,9 @@ class SafraController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Safra $safra)
+    public function edit(string $id)
     {
-        return view('safra.edit')->with('Safra', $safra);
+        //
     }
 
     /**

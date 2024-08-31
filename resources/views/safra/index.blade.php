@@ -14,8 +14,8 @@
                 <tbody>
                 @foreach ($safras as $safra)
                     <tr>
-                        <td>{{ $safra->id_safra }}</td>
-                        <td>{{ $safra->safra_nome }}</td>
+                        <td><a href="{{ route('safra.edit', $safra->id_safra ) }}" class="text-decoration-none text-dark">{{ $safra->id_safra }}</a></td>
+                        <td><a href="{{ route('safra.edit', $safra->id_safra ) }}" class="text-decoration-none text-dark">{{ $safra->safra_nome }}</a></td>
                     </tr>
                 @endforeach
 
