@@ -21,6 +21,8 @@ use App\Http\Controllers\CaixasController;
 use App\Http\Controllers\MelController;
 use App\Http\Controllers\TempomelController;
 use App\Http\Controllers\ManejomelController;
+use App\Http\Controllers\TratorController;
+use App\Http\Controllers\ImplementoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -67,6 +69,10 @@ Route::resource('/mel', MelController::class)->middleware(Autenticador::class)->
 Route::resource('/tempo_mel', TempomelController::class)->middleware(Autenticador::class)->middleware(ControleAcesso::class);
 //manejo mel
 Route::resource('/manejo_mel', ManejomelController::class)->middleware(Autenticador::class)->middleware(ControleAcesso::class);
+//trator
+Route::resource('/trator', TratorController::class)->middleware(Autenticador::class)->middleware(ControleAcesso::class);
+//implemento
+Route::resource('/implemento', ImplementoController::class)->middleware(Autenticador::class)->middleware(ControleAcesso::class);
 
 //login google
 //Route::get('login/google', "SocialiteController@redirectToProvider");

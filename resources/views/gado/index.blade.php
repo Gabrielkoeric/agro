@@ -1,8 +1,8 @@
 <x-layout title="Gado">
     <a href="{{route('home.index')}}" class="btn btn-dark my-3 pr">Home</a>
-    <a href="{{route('gado.create')}}" class="btn btn-dark my-3">Novo Terneiro</a>
+   <!--<a href="{{route('gado.create')}}" class="btn btn-dark my-3">Novo Terneiro</a>
     <a href="{{route('gado.create')}}" class="btn btn-dark my-3">Nova Compra</a>
-    <a href="{{route('gado.create')}}" class="btn btn-dark my-3">Novo Venda</a>
+    <a href="{{route('gado.create')}}" class="btn btn-dark my-3">Novo Venda</a>-->
 
     <ul class="list-group">
 
