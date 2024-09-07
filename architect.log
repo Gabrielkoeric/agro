@@ -1,0 +1,426 @@
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+306  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+350  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+351  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+373  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+22047 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+423530 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE TABLE implemento (
+                id_implemento VARCHAR NOT NULL,
+                nome_implemento VARCHAR NOT NULL,
+                observacao VARCHAR NOT NULL,
+                PRIMARY KEY (id_implemento)
+)
+423536 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE trator (
+                id_trator INT NOT NULL,
+                marca VARCHAR NOT NULL,
+                modelo VARCHAR NOT NULL,
+                ano VARCHAR NOT NULL,
+                PRIMARY KEY (id_trator)
+)
+423539 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE manejo_lavoura (
+                id_manejo VARCHAR NOT NULL,
+                observacao VARCHAR NOT NULL,
+                id_trator INT NOT NULL,
+                id_implemento VARCHAR NOT NULL,
+                PRIMARY KEY (id_manejo)
+)
+423540 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE safra (
+                id_safra INT NOT NULL,
+                safra_nome VARCHAR NOT NULL,
+                PRIMARY KEY (id_safra)
+)
+423542 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE produto (
+                id_produto INT NOT NULL,
+                id_safra INT NOT NULL,
+                nome_produto VARCHAR NOT NULL,
+                quantidade_produto VARCHAR NOT NULL,
+                valor_unitario VARCHAR NOT NULL,
+                valor_total VARCHAR NOT NULL,
+                PRIMARY KEY (id_produto)
+)
+423544 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE gado (
+                id_gado INT AUTO_INCREMENT NOT NULL,
+                brinco INT NOT NULL,
+                gado_nome VARCHAR NOT NULL,
+                data_nascimento VARCHAR NOT NULL,
+                sexo VARCHAR NOT NULL,
+                status BOOLEAN NOT NULL,
+                PRIMARY KEY (id_gado)
+)
+423544 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE home (
+                id_home INT AUTO_INCREMENT NOT NULL,
+                nome VARCHAR NOT NULL,
+                nome_tela VARCHAR NOT NULL,
+                imagem_tela VARCHAR NOT NULL,
+                PRIMARY KEY (id_home)
+)
+423546 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE perfil (
+                id_perfil INT AUTO_INCREMENT NOT NULL,
+                nome VARCHAR NOT NULL,
+                PRIMARY KEY (id_perfil)
+)
+423547 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE perfil_permissao (
+                id_perfil_permissao INT AUTO_INCREMENT NOT NULL,
+                id_perfil INT NOT NULL,
+                id_home INT NOT NULL,
+                PRIMARY KEY (id_perfil_permissao)
+)
+423549 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE usuarios (
+                id INT AUTO_INCREMENT NOT NULL,
+                email VARCHAR(50) NOT NULL,
+                nome_completo VARCHAR(255) NOT NULL,
+                celular VARCHAR(13) NOT NULL,
+                imagem CHAR,
+                permissao CHAR DEFAULT basico NOT NULL,
+                PRIMARY KEY (id)
+)
+423549 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE usuarios COMMENT 'Tabela referente a inserção de usuarios'
+423551 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE access_logs (
+                id_access_logs INT AUTO_INCREMENT NOT NULL,
+                ip_address VARCHAR NOT NULL,
+                id INT NOT NULL,
+                created_at DATE NOT NULL,
+                PRIMARY KEY (id_access_logs)
+)
+423552 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE usuario_perfil (
+                id_usuario_perfil INT AUTO_INCREMENT NOT NULL,
+                id INT NOT NULL,
+                id_perfil INT NOT NULL,
+                PRIMARY KEY (id_usuario_perfil)
+)
+423553 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER TABLE manejo_lavoura ADD CONSTRAINT implemento_manejo_lavoura_fk
+FOREIGN KEY (id_implemento)
+REFERENCES implemento (id_implemento)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+423554 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE manejo_lavoura ADD CONSTRAINT trator_manejo_lavoura_fk
+FOREIGN KEY (id_trator)
+REFERENCES trator (id_trator)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+423556 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE produto ADD CONSTRAINT safra_produto_fk
+FOREIGN KEY (id_safra)
+REFERENCES safra (id_safra)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+423561 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE perfil_permissao ADD CONSTRAINT home_tb_perfil_permissao_fk
+FOREIGN KEY (id_home)
+REFERENCES home (id_home)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+423563 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE perfil_permissao ADD CONSTRAINT tb_perfil_tb_perfil_permissao_fk
+FOREIGN KEY (id_perfil)
+REFERENCES perfil (id_perfil)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+423566 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE usuario_perfil ADD CONSTRAINT tb_perfil_usuario_perfil_fk
+FOREIGN KEY (id_perfil)
+REFERENCES perfil (id_perfil)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+423568 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE usuario_perfil ADD CONSTRAINT tb_usuario_usuario_perfil_fk
+FOREIGN KEY (id)
+REFERENCES usuarios (id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+423570 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE access_logs ADD CONSTRAINT usuarios_access_logs_fk
+FOREIGN KEY (id)
+REFERENCES usuarios (id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+423576 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :21
+1159769 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+1159774 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+1160154 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+1160156 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+1160160 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+1160511 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+1160514 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+1161080 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+1161083 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+1605799 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE TABLE recomendacao (
+                id_recomendacao VARCHAR NOT NULL,
+                nome_recomendacao VARCHAR NOT NULL,
+                data_recomendacao VARCHAR NOT NULL,
+                PRIMARY KEY (id_recomendacao)
+)
+1605805 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE implemento (
+                id_implemento VARCHAR NOT NULL,
+                nome_implemento VARCHAR NOT NULL,
+                observacao VARCHAR NOT NULL,
+                PRIMARY KEY (id_implemento)
+)
+1605807 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE trator (
+                id_trator INT NOT NULL,
+                marca VARCHAR NOT NULL,
+                modelo VARCHAR NOT NULL,
+                ano VARCHAR NOT NULL,
+                PRIMARY KEY (id_trator)
+)
+1605809 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE manejo_lavoura (
+                id_manejo VARCHAR NOT NULL,
+                observacao VARCHAR NOT NULL,
+                id_trator INT NOT NULL,
+                id_implemento VARCHAR NOT NULL,
+                data_hora_ini VARCHAR NOT NULL,
+                data_hora_fim VARCHAR NOT NULL,
+                id_recomendacao VARCHAR NOT NULL,
+                PRIMARY KEY (id_manejo)
+)
+1605812 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE produto (
+                id_produto INT NOT NULL,
+                nome_produto VARCHAR NOT NULL,
+                quantidade_produto VARCHAR NOT NULL,
+                valor_unitario VARCHAR NOT NULL,
+                valor_total VARCHAR NOT NULL,
+                PRIMARY KEY (id_produto)
+)
+1605813 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE produto_recomendacao (
+                id_produto_recomendacao VARCHAR NOT NULL,
+                id_produto INT NOT NULL,
+                id_recomendacao VARCHAR NOT NULL,
+                PRIMARY KEY (id_produto_recomendacao)
+)
+1605815 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE safra (
+                id_safra INT NOT NULL,
+                safra_nome VARCHAR NOT NULL,
+                PRIMARY KEY (id_safra)
+)
+1605816 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE gastos_lavoura (
+                id_safra INT NOT NULL,
+                id_produto INT NOT NULL
+)
+1605817 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE gado (
+                id_gado INT AUTO_INCREMENT NOT NULL,
+                brinco INT NOT NULL,
+                gado_nome VARCHAR NOT NULL,
+                data_nascimento VARCHAR NOT NULL,
+                sexo VARCHAR NOT NULL,
+                status BOOLEAN NOT NULL,
+                PRIMARY KEY (id_gado)
+)
+1605817 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE home (
+                id_home INT AUTO_INCREMENT NOT NULL,
+                nome VARCHAR NOT NULL,
+                nome_tela VARCHAR NOT NULL,
+                imagem_tela VARCHAR NOT NULL,
+                PRIMARY KEY (id_home)
+)
+1605818 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE perfil (
+                id_perfil INT AUTO_INCREMENT NOT NULL,
+                nome VARCHAR NOT NULL,
+                PRIMARY KEY (id_perfil)
+)
+1605819 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE perfil_permissao (
+                id_perfil_permissao INT AUTO_INCREMENT NOT NULL,
+                id_perfil INT NOT NULL,
+                id_home INT NOT NULL,
+                PRIMARY KEY (id_perfil_permissao)
+)
+1605820 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE usuarios (
+                id INT AUTO_INCREMENT NOT NULL,
+                email VARCHAR(50) NOT NULL,
+                nome_completo VARCHAR(255) NOT NULL,
+                celular VARCHAR(13) NOT NULL,
+                imagem CHAR,
+                permissao CHAR DEFAULT basico NOT NULL,
+                PRIMARY KEY (id)
+)
+1605822 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE usuarios COMMENT 'Tabela referente a inserção de usuarios'
+1605823 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE access_logs (
+                id_access_logs INT AUTO_INCREMENT NOT NULL,
+                ip_address VARCHAR NOT NULL,
+                id INT NOT NULL,
+                created_at DATE NOT NULL,
+                PRIMARY KEY (id_access_logs)
+)
+1605824 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE usuario_perfil (
+                id_usuario_perfil INT AUTO_INCREMENT NOT NULL,
+                id INT NOT NULL,
+                id_perfil INT NOT NULL,
+                PRIMARY KEY (id_usuario_perfil)
+)
+1605825 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER TABLE manejo_lavoura ADD CONSTRAINT recomendacao_manejo_lavoura_fk
+FOREIGN KEY (id_recomendacao)
+REFERENCES recomendacao (id_recomendacao)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+1605826 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE produto_recomendacao ADD CONSTRAINT recomendacao_produto_recomendacao_fk
+FOREIGN KEY (id_recomendacao)
+REFERENCES recomendacao (id_recomendacao)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+1605827 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE manejo_lavoura ADD CONSTRAINT implemento_manejo_lavoura_fk
+FOREIGN KEY (id_implemento)
+REFERENCES implemento (id_implemento)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+1605829 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE manejo_lavoura ADD CONSTRAINT trator_manejo_lavoura_fk
+FOREIGN KEY (id_trator)
+REFERENCES trator (id_trator)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+1605830 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE produto_recomendacao ADD CONSTRAINT produto_produto_recomendacao_fk
+FOREIGN KEY (id_produto)
+REFERENCES produto (id_produto)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+1605831 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE gastos_lavoura ADD CONSTRAINT produto_gastos_lavoura_fk
+FOREIGN KEY (id_produto)
+REFERENCES produto (id_produto)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+1605832 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE gastos_lavoura ADD CONSTRAINT safra_gastos_lavoura_fk
+FOREIGN KEY (id_safra)
+REFERENCES safra (id_safra)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+1605834 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE perfil_permissao ADD CONSTRAINT home_tb_perfil_permissao_fk
+FOREIGN KEY (id_home)
+REFERENCES home (id_home)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+1605835 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE perfil_permissao ADD CONSTRAINT tb_perfil_tb_perfil_permissao_fk
+FOREIGN KEY (id_perfil)
+REFERENCES perfil (id_perfil)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+1605836 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE usuario_perfil ADD CONSTRAINT tb_perfil_usuario_perfil_fk
+FOREIGN KEY (id_perfil)
+REFERENCES perfil (id_perfil)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+1605837 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE usuario_perfil ADD CONSTRAINT tb_usuario_usuario_perfil_fk
+FOREIGN KEY (id)
+REFERENCES usuarios (id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+1605839 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE access_logs ADD CONSTRAINT usuarios_access_logs_fk
+FOREIGN KEY (id)
+REFERENCES usuarios (id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+1605840 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :28
