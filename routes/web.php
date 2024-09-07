@@ -23,6 +23,7 @@ use App\Http\Controllers\TempomelController;
 use App\Http\Controllers\ManejomelController;
 use App\Http\Controllers\TratorController;
 use App\Http\Controllers\ImplementoController;
+use App\Http\Controllers\RecomendacaoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -73,6 +74,8 @@ Route::resource('/manejo_mel', ManejomelController::class)->middleware(Autentica
 Route::resource('/trator', TratorController::class)->middleware(Autenticador::class)->middleware(ControleAcesso::class);
 //implemento
 Route::resource('/implemento', ImplementoController::class)->middleware(Autenticador::class)->middleware(ControleAcesso::class);
+//recomendacao
+Route::resource('/recomendacao', RecomendacaoController::class)->middleware(Autenticador::class)->middleware(ControleAcesso::class);
 
 //login google
 //Route::get('login/google', "SocialiteController@redirectToProvider");

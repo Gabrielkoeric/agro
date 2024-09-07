@@ -169,6 +169,15 @@ return new class extends Migration
                 'updated_at' => null,
             ],
             [
+                'id_home' => 17,
+                'nome' => 'Recomendação',
+                'nome_tela' => 'recomendacao',
+                'imagem_tela' => 'storage/home/ip_publico.png',
+                'permite_home' => 1,
+                'created_at' => null,
+                'updated_at' => null,
+            ],
+            [
                 'id_home' => 98,
                 'nome' => 'Usuarios',
                 'nome_tela' => 'usuario',
