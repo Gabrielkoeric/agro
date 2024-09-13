@@ -16,7 +16,7 @@
                 <tbody>
                 @foreach ($areas as $area)
                     <tr>
-                        <td>{{ $area->nome_area }}</td>
+                        <td>{{ $area->nome }}</td>
                         <td>{{ $area->tamanho }}</td>
                     </tr>
                 @endforeach
