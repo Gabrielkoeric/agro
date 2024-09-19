@@ -22,7 +22,11 @@ class GadoController extends Controller
      */
     public function create()
     {
-        //
+        $gados = DB::table('gado')
+                ->where('sexo', 'F')
+                ->where('status', 1)
+                ->get();
+        return view('gado.create')->with('gados', $gados);
     }
 
     /**
@@ -30,7 +34,24 @@ class GadoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $brinco = $request->input('brinco');
+        $nome = $request->input('nome');
+        $data_nascimento = $request->input('data_nascimento');
+        $sexo = $request->input('sexo');
+        $mae = $request->input('mae');
+        $status = $request->has('ativo') ? 1 : 0;
+
+        $dados = [
+            'brinco' => $brinco,
+            'gado_nome' => $nome,
+            'data_nascimento' => $data_nascimento,
+            'sexo' => $sexo,
+            'mae' => $mae,
+            'status' => $status,
+        ];
+        $id = DB::table('gado')->insertGetId($dados);
+
+        return redirect('/gado');
     }
 
     /**

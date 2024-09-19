@@ -1,3 +1,3 @@
-<x-layout title="Novo Usuario">
-    <x-usuario.forms :action="route('usuario.store')"></x-usuario.forms>
+<x-layout title="Novo Terneiro">
+    <x-gado.forms :action="route('gado.store')" :gados="$gados"></x-gado.forms>
 </x-layout>
