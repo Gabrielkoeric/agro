@@ -6,14 +6,18 @@
 
     <div class="mb-3">
 
-        <label for="brinco" class=form-label>Brinco:</label>
-        <input type="text" id="brinco" name="brinco" class="form-control" @isset($brinco) value="{{$brinco}}" @endisset>
+        <label for="brinco" class="form-label">Brinco:</label>
+        <input type="text" id="brinco" name="brinco" class="form-control" 
+            @isset($brinco) value="{{$brinco}}" @endisset 
+            minlength="6" maxlength="6" pattern="\d{6}">
+        <small class="form-text text-muted">Se preenchido, o brinco deve ter exatamente 6 dígitos numéricos.</small><br>
 
         <label for="nome" class=form-label>Nome:</label>
         <input type="text" id="nome" name="nome" class="form-control" @isset($nome) value="{{$nome}}" @endisset>
 
-        <label for="data_nascimento" class=form-label>Data Nascimento:</label>
-        <input type="text" id="data_nascimento" name="data_nascimento" class="form-control" @isset($data_nascimento) value="{{$data_nascimento}}" @endisset required>
+        <label for="data_nascimento" class="form-label">Data Nascimento:</label>
+        <input type="date" id="data_nascimento" name="data_nascimento" class="form-control"
+        @isset($data_nascimento) value="{{$data_nascimento}}" @endisset required>
 
         <label for="mae" class=form-label>Mãe</label>
         <select id="mae" name="mae" class="form-control" required>
