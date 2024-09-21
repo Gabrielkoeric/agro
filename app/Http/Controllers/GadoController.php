@@ -65,9 +65,30 @@ class GadoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        /*
+        $perfis = DB::table('perfil')
+            ->select('id_perfil', 'nome')
+            ->get();
+
+        $perfilAtual = DB::table('usuarios as u')
+            ->select('p.nome as nome_perfil', 'p.id_perfil as id_perfil')
+            ->leftJoin('usuario_perfil as up', 'u.id', '=', 'up.id')
+            ->leftJoin('perfil as p', 'up.id_perfil', '=', 'p.id_perfil')
+            ->where('u.id', '=', $usuario->id)
+            ->first();
+        */
+        $gados = DB::table('gado')
+                ->where('sexo', 'F')
+                ->where('status', 1)
+                ->get();
+
+        $gado = DB::table('gado')->where('id_gado', $id)->first();
+
+        //dd($gado);
+
+        return view('gado.edit')->with('gado', $gado)->with('gados', $gados)/*->with('perfilAtual', $perfilAtual)*/;
     }
 
     /**

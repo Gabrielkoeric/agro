@@ -18,12 +18,17 @@
                 </thead>
                 <tbody>
                 @foreach ($gados as $gado)
-                    <tr>
+                    <tr><!--
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $gado->brinco }}</td>
                         <td>{{ $gado->gado_nome }}</td>
                         <td>{{ $gado->data_nascimento }}</td>
-                        <td>{{ $gado->sexo }}</td>
+                        <td>{{ $gado->sexo }}</td>-->
+                        <td><a href="{{ route('gado.edit', $gado->id_gado) }}" class="text-decoration-none text-dark">{{ $loop->iteration }}</a></td>
+                        <td><a href="{{ route('gado.edit', $gado->id_gado) }}" class="text-decoration-none text-dark">{{ $gado->brinco }}</a></td>
+                        <td><a href="{{ route('gado.edit', $gado->id_gado) }}" class="text-decoration-none text-dark">{{ $gado->gado_nome }}</a></td>
+                        <td><a href="{{ route('gado.edit', $gado->id_gado) }}" class="text-decoration-none text-dark">{{ $gado->data_nascimento }}</a></td>
+                        <td><a href="{{ route('gado.edit', $gado->id_gado) }}" class="text-decoration-none text-dark">{{ $gado->sexo }}</a></td>
                     </tr>
                 @endforeach
 
