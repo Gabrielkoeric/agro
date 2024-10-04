@@ -1,6 +1,6 @@
 <form action="{{$action}}" method="post">
     @csrf
-    @isset($nome)
+    @isset($datanascimento)
         @method('PUT')
     @endisset
 
@@ -17,27 +17,20 @@
 
         <label for="data_nascimento" class="form-label">Data Nascimento:</label>
         <input type="date" id="data_nascimento" name="data_nascimento" class="form-control"
-        @isset($data_nascimento) value="{{$data_nascimento}}" @endisset required>
+value="{{ old('data_nascimento', $datanascimento ?? '') }}" required>
 
-        <label for="mae" class=form-label>Mãe</label>
-        <select id="mae" name="mae" class="form-control" required>
-            @if(!isset($maeAtual))
-            <option value="">Selecione a Mãe do Terneiro</option>
-            @endif
-            @if(isset($maeAtual))
-                <option value="{{ $maeAtual->id_gado }}">{{ $maeAtual->gado_nome }}</option>
-            @endif
-            @foreach ($gados as $gado)
 
-                    @if (isset($maeAtual))
-                        @if ($gado->id_gado <> $maeAtual->id_gado)
-                            <option value="{{ $gado->id_gado }}">{{ $gado->gado_nome }}</option>
-                        @endif
-                    @else
-                        <option value="{{ $gado->id_gado }}">{{ $gado->gado_nome }}</option>
-                    @endif
-            @endforeach
-        </select >
+<label for="mae" class="form-label">Mãe</label>
+<select id="mae" name="mae" class="form-control">
+    <option value="">Selecione a Mãe do Terneiro</option>
+    @foreach ($gados as $gadoFemea)
+        <option value="{{ $gadoFemea->id_gado }}" 
+            {{ (old('mae', isset($mae) ? $mae : '') == $gadoFemea->id_gado) ? 'selected' : '' }}>
+            {{ $gadoFemea->gado_nome }}
+        </option>
+    @endforeach
+</select>
+
         
         <label for="sexo" class="form-label">Sexo</label>
         <select id="sexo" name="sexo" class="form-control" required>

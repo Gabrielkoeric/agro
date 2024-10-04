@@ -66,37 +66,58 @@ class GadoController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit($id)
-    {
-        /*
-        $perfis = DB::table('perfil')
-            ->select('id_perfil', 'nome')
+{
+    // Busca os gados fêmeas ativos para popular a lista de mães disponíveis
+    $gados = DB::table('gado')
+            ->where('sexo', 'F')
+            ->where('status', 1)
             ->get();
 
-        $perfilAtual = DB::table('usuarios as u')
-            ->select('p.nome as nome_perfil', 'p.id_perfil as id_perfil')
-            ->leftJoin('usuario_perfil as up', 'u.id', '=', 'up.id')
-            ->leftJoin('perfil as p', 'up.id_perfil', '=', 'p.id_perfil')
-            ->where('u.id', '=', $usuario->id)
+    // Busca o gado que está sendo editado
+    $gado = DB::table('gado')->where('id_gado', $id)->first();
+
+    // Busca a mãe atual do gado, se houver
+    $maeAtual = null;
+    if (!empty($gado->mae)) {
+        $maeAtual = DB::table('gado')
+            ->where('id_gado', $gado->mae)
             ->first();
-        */
-        $gados = DB::table('gado')
-                ->where('sexo', 'F')
-                ->where('status', 1)
-                ->get();
-
-        $gado = DB::table('gado')->where('id_gado', $id)->first();
-
-        //dd($gado);
-
-        return view('gado.edit')->with('gado', $gado)->with('gados', $gados)/*->with('perfilAtual', $perfilAtual)*/;
     }
+    //dd($gado);
+
+    // Passa os dados para a view
+    return view('gado.edit')
+        ->with('gado', $gado)
+        ->with('gados', $gados)
+        ->with('maeAtual', $maeAtual);
+}
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Captura os dados da request
+        $nome = $request->input('nome');
+        $data_nascimento = $request->input('data_nascimento');
+        $sexo = $request->input('sexo');
+        $mae = $request->input('mae');
+        $status = $request->has('ativo') ? 1 : 0;
+        $brinco = $request->input('brinco');
+
+    // Atualiza o registro no banco de dados
+    DB::table('gado')
+        ->where('id_gado', $id) // Usar a variável $id recebida como parâmetro
+        ->update([
+            'brinco' => $brinco,
+            'gado_nome' => $nome,
+            'data_nascimento' => $data_nascimento,
+            'sexo' => $sexo,
+            'mae' => $mae,
+            'status' => $status,
+        ]);
+
+    return redirect('/gado')/*->with('success', 'Gado atualizado com sucesso!')*/;
     }
 
     /**
