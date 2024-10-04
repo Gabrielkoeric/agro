@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('manejo_lavoura', function (Blueprint $table) {
             $table->id('id_manejo_lavoura');
-            $table->timestamp('data_hora_ini');
-            $table->timestamp('data_hora_fim')->nullable();
+            //$table->timestamp('data_hora_ini');
+            $table->string('data_hora_ini');
+            //$table->timestamp('data_hora_fim')->nullable();
+            $table->string('data_hora_fim')->nullable();
             $table->float('horas_totais')->nullable();
             $table->string('descricao')->nullable();
             $table->unsignedBigInteger('id');

@@ -31,7 +31,22 @@ class ManejolavouraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ini = $request->input('ini');
+        $fim = $request->input('fim');
+        $descricao = $request->input('descricao');
+        $usuario = $request->input('usuario');
+
+        $dados = [
+            'brinco' => $brinco,
+            'gado_nome' => $nome,
+            'data_nascimento' => $data_nascimento,
+            'sexo' => $sexo,
+            'mae' => $mae,
+            'status' => $status,
+        ];
+        $id = DB::table('gado')->insertGetId($dados);
+
+        return redirect('/gado');
     }
 
     /**

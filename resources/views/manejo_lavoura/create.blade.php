@@ -1,3 +1,3 @@
 <x-layout title="Novo Manejo">
-    <x-usuario.forms :action="route('manejo_lavoura.store')" :usuarios="$usuarios"></x-usuario.forms>
+    <x-manejo_lavoura.forms :action="route('manejo_lavoura.store')" :usuarios="$usuarios"></x-manejo_lavoura.forms>
 </x-layout>

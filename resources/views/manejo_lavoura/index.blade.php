@@ -12,8 +12,8 @@
                 <tr>
                     <th scope="col">Data/hora ini</th>
                     <th scope="col">Data/hora fim</th>
-                    <th scope="col">Descrição</th>
                     <th scope="col">Horas Totais</th>
+                    <th scope="col">Descrição</th>
                     <th scope="col">Usuario</th>
                 </tr>
                 </thead>
@@ -22,8 +22,8 @@
                     <tr>
                         <td><a href="{{ route('manejo_lavoura.edit', $manejo_lavoura->id ) }}" class="text-decoration-none text-dark">{{ $manejo_lavoura->data_hora_ini }}</a></td>
                         <td><a href="{{ route('manejo_lavoura.edit', $manejo_lavoura->id) }}" class="text-decoration-none text-dark">{{ $manejo_lavoura->data_hora_fim }}</a></td>
-                        <td><a href="{{ route('manejo_lavoura.edit', $manejo_lavoura->id) }}" class="text-decoration-none text-dark">{{ $manejo_lavoura->descricao }}</a></td>
                         <td><a href="{{ route('manejo_lavoura.edit', $manejo_lavoura->id) }}" class="text-decoration-none text-dark">{{ $manejo_lavoura->horas_totais }}</a></td>
+                        <td><a href="{{ route('manejo_lavoura.edit', $manejo_lavoura->id) }}" class="text-decoration-none text-dark">{{ $manejo_lavoura->descricao }}</a></td>
                         <td><a href="{{ route('manejo_lavoura.edit', $manejo_lavoura->id) }}" class="text-decoration-none text-dark">{{ $manejo_lavoura->id }}</a></td>
                         <td>
                         <span class="d-flex">
