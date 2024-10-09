@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class ManejolavouraController extends Controller
 {
@@ -32,21 +33,29 @@ class ManejolavouraController extends Controller
     public function store(Request $request)
     {
         $ini = $request->input('ini');
-        $fim = $request->input('fim');
-        $descricao = $request->input('descricao');
-        $usuario = $request->input('usuario');
+    $fim = $request->input('fim');
+    $descricao = $request->input('descricao');
+    $usuario = $request->input('usuario');
+
+    // Calcula a diferença entre as datas se 'fim' não for nulo
+    $horas_totais = null;
+    if ($fim) {
+        $inicio = Carbon::parse($ini);
+        $final = Carbon::parse($fim);
+        $diff = $inicio->diff($final);
+        $horas_totais = sprintf('%dH : %dMin', $diff->h, $diff->i);
+    }
 
         $dados = [
-            'brinco' => $brinco,
-            'gado_nome' => $nome,
-            'data_nascimento' => $data_nascimento,
-            'sexo' => $sexo,
-            'mae' => $mae,
-            'status' => $status,
+            'data_hora_ini' => $ini,
+            'data_hora_fim' => $fim,
+            'horas_totais' => $horas_totais,
+            'descricao' => $descricao,
+            'id' => $usuario,
         ];
-        $id = DB::table('gado')->insertGetId($dados);
+        $id = DB::table('manejo_lavoura')->insertGetId($dados);
 
-        return redirect('/gado');
+        return redirect('/manejo_lavoura');
     }
 
     /**

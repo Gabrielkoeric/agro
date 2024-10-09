@@ -19,21 +19,19 @@
                 </thead>
                 <tbody>
                 @foreach ($manejos_lavouras as $manejo_lavoura)
-                    <tr>
+                    <tr><!--
                         <td><a href="{{ route('manejo_lavoura.edit', $manejo_lavoura->id ) }}" class="text-decoration-none text-dark">{{ $manejo_lavoura->data_hora_ini }}</a></td>
                         <td><a href="{{ route('manejo_lavoura.edit', $manejo_lavoura->id) }}" class="text-decoration-none text-dark">{{ $manejo_lavoura->data_hora_fim }}</a></td>
                         <td><a href="{{ route('manejo_lavoura.edit', $manejo_lavoura->id) }}" class="text-decoration-none text-dark">{{ $manejo_lavoura->horas_totais }}</a></td>
                         <td><a href="{{ route('manejo_lavoura.edit', $manejo_lavoura->id) }}" class="text-decoration-none text-dark">{{ $manejo_lavoura->descricao }}</a></td>
-                        <td><a href="{{ route('manejo_lavoura.edit', $manejo_lavoura->id) }}" class="text-decoration-none text-dark">{{ $manejo_lavoura->id }}</a></td>
-                        <td>
-                        <span class="d-flex">
-                            <!--<form action="{{route('manejo_lavoura.destroy', $manejo_lavoura->id)}}" method="post" class="ms-2">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger btn-sm">Excluir</button>
-                            </form>-->
-                        </span>
-                        </td>
+                        <td><a href="{{ route('manejo_lavoura.edit', $manejo_lavoura->id) }}" class="text-decoration-none text-dark">{{ $manejo_lavoura->id }}</a></td>-->
+
+                        <td>{{ $manejo_lavoura->data_hora_ini }}</td>
+                        <td>{{ $manejo_lavoura->data_hora_fim }}</td>
+                        <td>{{ $manejo_lavoura->horas_totais }}</td>
+                        <td>{{ $manejo_lavoura->descricao }}</td>
+                        <td>{{ $manejo_lavoura->id }}</td>
+                        
                     </tr>
                 @endforeach
 

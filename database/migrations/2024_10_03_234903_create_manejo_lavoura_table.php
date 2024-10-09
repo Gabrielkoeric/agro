@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('data_hora_ini');
             //$table->timestamp('data_hora_fim')->nullable();
             $table->string('data_hora_fim')->nullable();
-            $table->float('horas_totais')->nullable();
+            $table->string('horas_totais')->nullable();
             $table->string('descricao')->nullable();
             $table->unsignedBigInteger('id');
             $table->foreign('id')->references('id')->on('usuarios');
