@@ -15,7 +15,7 @@ use App\Http\Controllers\AreasController;
 use App\Http\Controllers\SafraController;
 use App\Http\Controllers\ManejolavouraController;
 use App\Http\Controllers\ProdutosController;
-use App\Http\Controllers\TempolavouraController;
+use App\Http\Controllers\ResultadoslavourasController;
 use App\Http\Controllers\ApiariosController;
 use App\Http\Controllers\CaixasController;
 use App\Http\Controllers\MelController;
@@ -58,8 +58,8 @@ Route::resource('/safra', SafraController::class)->middleware(Autenticador::clas
 Route::resource('/manejo_lavoura', ManejolavouraController::class)->middleware(Autenticador::class)->middleware(ControleAcesso::class);
 //produtos
 Route::resource('/produtos', ProdutosController::class)->middleware(Autenticador::class)->middleware(ControleAcesso::class);
-//tempo lavoura
-Route::resource('/tempo_lavoura', TempolavouraController::class)->middleware(Autenticador::class)->middleware(ControleAcesso::class);
+//resultados lavoura
+Route::resource('/resultados_lavouras', ResultadoslavourasController::class)->middleware(Autenticador::class)->middleware(ControleAcesso::class);
 //apiarios
 Route::resource('/apiarios', ApiariosController::class)->middleware(Autenticador::class)->middleware(ControleAcesso::class);
 //caixas
