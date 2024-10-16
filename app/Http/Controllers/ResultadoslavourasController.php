@@ -37,7 +37,7 @@ class ResultadoslavourasController extends Controller
     $valor_unitario = $request->input('uni');
     $quantidade = $request->input('quant');
     $tipo_operacao = $request->input('tipo_operacao'); // 1 para venda, 0 para compra
-    $fornecedor = "gabriel"; // Adicionada a ponto e vírgula aqui
+    $fornecedor = $request->input('fornecedor'); // Adicionada a ponto e vírgula aqui
 
     // Calcula o valor total
     $valor_total = $valor_unitario * $quantidade;

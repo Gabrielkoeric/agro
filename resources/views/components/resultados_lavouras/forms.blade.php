@@ -15,6 +15,9 @@
         <label for="quant" class=form-label>Quantidade:</label>
         <input type="text" id="quant" name="quant" class="form-control" @isset($quant) value="{{$quant}}" @endisset>
 
+        <label for="fornecedor" class=form-label>Fornecedor:</label>
+        <input type="text" id="fornecedor" name="fornecedor" class="form-control" @isset($fornecedor) value="{{$fornecedor}}" @endisset>
+
         <div class="form-group mt-3">
             <label for="tipo_operacao" class="form-label">Tipo de Operação:</label>
             <div class="form-check form-switch">
