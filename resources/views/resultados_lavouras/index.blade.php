@@ -14,7 +14,7 @@
                     <th scope="col">Valor Unitario</th>
                     <th scope="col">Quantidade</th>
                     <th scope="col">Valor Total</th>
-                   <!-- <th scope="col">Fornecedor</th>-->
+                    <th scope="col">Fornecedor</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -25,9 +25,7 @@
                         <td>{{ $gasto->valor_unitario }}</td>
                         <td>{{ $gasto->quantidade }}</td>
                         <td>{{ $gasto->valor_total }}</td>
-                        <!--<td>{{ $gasto->fornecedor }}</td>-->
-
-                        
+                        <td>{{ $gasto->fornecedor }}</td>
                     </tr>
                 @endforeach
 
